@@ -18,12 +18,8 @@ public class UserService {
 		example.setOrderByClause("id desc");
 		return userMapper.selectByExample(example);
 	}
-	public List<User> findByUserEmaiAndpassWordhash(String email, String passWordhash) {
-		UserExample example = new UserExample();
-		example.createCriteria().andEmailEqualTo(email).andPasswordhashEqualTo(passWordhash);
-		return userMapper.selectByExample(example);
-	}
-	public void insertUser(User user) {
+
+	public void saveUser(User user) {
 		userMapper.insert(user);
 	}
 	public List<User> findUserByEmail(String email) {
@@ -31,15 +27,12 @@ public class UserService {
 		example.createCriteria().andEmailEqualTo(email);
 		return userMapper.selectByExample(example);
 	}
-	public boolean isNewUserValid(User newUser) {
+	public List<User> findUserByNickNanme(String nickName){
 		UserExample example = new UserExample();
-		example.or().andEmailEqualTo(newUser.getEmail());
-		example.or().andNicknameEqualTo(newUser.getNickname());
-		if (userMapper.selectByExample(example).isEmpty()) {
-			return true;
-		}
-		return false;
+		example.createCriteria().andNickNameEqualTo(nickName);
+		return userMapper.selectByExample(example);
 	}
+	
 	public void deleteUser(User user) {
 		userMapper.deleteByPrimaryKey(user.getId());
 	}
