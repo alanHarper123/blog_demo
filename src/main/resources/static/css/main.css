@@ -1912,7 +1912,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 .header__search-form input[type="search"] {
    background-color: transparent;
-   color: #000000;
+   color: #FFFFFF;
    height: auto;
    width: 100%;
    font-family: "metropolis-semibold", sans-serif;
@@ -1971,6 +1971,18 @@ body.search-is-visible {
 .search-is-visible .header__search {
    opacity: 1;
    visibility: visible;
+}
+
+.header__Login-Logout-trigger{
+   font-family: "metropolis-semibold", sans-serif;
+   font-size: 12px;
+   letter-spacing: 2px;
+   line-height: 21px;
+   display: block;
+   color: #FFFFFF;
+   position: absolute;
+   right: 130px;
+   top: 15px;
 }
 
 
