@@ -190,6 +190,7 @@
 
    /* Masonry
     * ---------------------------------------------------- */ 
+
     var clMasonryFolio = function () {
         
         var containerBricks = $('.masonry');
