@@ -13,9 +13,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import com.qiujintao.handler.RefererRedirectionAuthenticationSuccessHandler;
+import com.qiujintao.service.MyUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -27,16 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
 	@Autowired
-	private DataSource dataSource;
-	
+	private MyUserDetailsService MyUserDetailsService; 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().dataSource(dataSource)
-		.usersByUsernameQuery("select email, passwordHash, active from user where email=?")
-		.authoritiesByUsernameQuery("select email, role from user where email=?")
-		.passwordEncoder(bCryptPasswordEncoder);
+		auth.userDetailsService(MyUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
 	}
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -50,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.formLogin().loginPage("/login")
 		.usernameParameter("email")
 		.passwordParameter("password")
-		.defaultSuccessUrl("/")
+		.successHandler(new RefererRedirectionAuthenticationSuccessHandler("/"))
 		.and()
 		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.logoutSuccessUrl("/")

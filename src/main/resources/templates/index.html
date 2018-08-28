@@ -144,6 +144,7 @@
 								<h1>
 									<a href="#0" title="">What Your Music Preference Says About
 										You and Your Personality.</a>
+										<a href="/login">login in</a>
 								</h1>
 
 								<div class="entry__info">
@@ -246,7 +247,7 @@
 						data-aos="fade-up" >
 						<div class="entry__thumb">
 							<a href="single-standard.html" class="entry__thumb-link"> <img th:if="${article.image}"
-								th:src="@{'data:image;base64,'+${new java.lang.String(article.image)}}"
+								th:src="@{${new java.lang.String(article.image)}}"
 
 								alt="">
 							</a>
@@ -256,23 +257,15 @@
 							<div class="entry__header">
 
 								<div class="entry__date">
-									<a href="single-standard.html">December 15, 2017</a>
+									<a href="single-standard.html" th:text="${article.creation_date}"></a>
 								</div>
 								<h1 class="entry__title">
-									<a href="single-standard.html" th:text="${article.title}">Just a Standard Format Post.</a>
+									<a href="single-standard.html" th:text="${article.title}"></a>
 								</h1>
 
 							</div>
 							<div class="entry__excerpt" th:if="${article.excerpt}">
-								<p >Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua
-									incididunt mollit id et sit proident dolor nulla sed commodo est
-									ad minim elit reprehenderit nisi officia aute incididunt velit
-									sint in aliqua...</p>
-							</div>
-							<div class="entry__meta">
-								<span class="entry__meta-links"> <a href="category.html">Design</a>
-									<a href="category.html">Photography</a>
-								</span>
+								<p th:text="${article.excerpt}"></p>
 							</div>
 						</div>
 

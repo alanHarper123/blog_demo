@@ -8,7 +8,7 @@
 #CREATE USER 'qiujintao'@'%' IDENTIFIED BY 'ck6531129ZXCVMU!!!';
 #GRANT ALL PRIVILEGES ON *.* TO 'qiujintao'@'%' WITH GRANT OPTION;
 #FLUSH PRIVILEGES;
-
+CREATE DATABASE `blog`;
 DROP TABLE IF EXISTS `blog`.`user`;
 CREATE TABLE IF NOT EXISTS `blog`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -23,4 +23,37 @@ CREATE TABLE IF NOT EXISTS `blog`.`user` (
   UNIQUE INDEX `nickName_UNIQUE` (`nickName` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   PRIMARY KEY (`id`))
+ENGINE = InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `blog`.`user` VALUES (1,'邱','锦涛','alan','$2a$10$42nXFgpdRIHO.SFMvUoAHe8P2SFCUUPBjzsmtdf.TA6k84Cb2g5Km',NULL,1,'ADMIN','1531508001@qq.com'),(3,NULL,NULL,'jack','$2a$10$TWEl2UOYW4Ei8Ta2L79gGe77OGf7.H3SoHi4dtbf7I74ZSg71RH9q',NULL,1,'USER','alanharperironharper@gmail.com');
+
+DROP TABLE IF EXISTS `blog`.`article`;
+CREATE TABLE IF NOT EXISTS `blog`.`article` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+`excerpt` VARCHAR(500) NULL,
+  `user_id` INT NOT NULL,
+  `creation_date` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `last_update` DATETIME ON UPDATE CURRENT_TIMESTAMP,
+  `image` MEDIUMBLOB NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_artical_user_idx` (`user_id` ASC),
+  CONSTRAINT `fk_artical_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `blog`.`user` (`id`)
+)
+ENGINE = InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `blog`.`paragraph`;
+CREATE TABLE IF NOT EXISTS `blog`.`paragraph` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `text` TEXT(65000) NULL,
+  `image` MEDIUMBLOB NULL,
+  `imageCaption` VARCHAR(255) NULL,
+  `article_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_paragraph_article1_idx` (`article_id` ASC),
+  CONSTRAINT `fk_paragraph_article1`
+    FOREIGN KEY (`article_id`)
+    REFERENCES `blog`.`article` (`id`)
+    )
 ENGINE = InnoDB DEFAULT CHARSET=utf8;

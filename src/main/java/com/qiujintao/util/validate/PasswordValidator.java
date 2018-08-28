@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidatorContext;
 
 public class PasswordValidator implements ConstraintValidator<ValidPassword, String> {
 	
-	private static final String PASSWORD_REGEX = "^(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9@#$%^&+=]).{6,}$";
+	private static final String PASSWORD_REGEX = "^(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9@#$%^&+=]).{6,16}$";
 	private Pattern pattern = Pattern.compile(PASSWORD_REGEX);
 	@Override
 	public void initialize(ValidPassword arg0) {

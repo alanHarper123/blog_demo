@@ -19,8 +19,8 @@ public class UserService {
 		return userMapper.selectByExample(example);
 	}
 
-	public void saveUser(User user) {
-		userMapper.insert(user);
+	public int saveUser(User user) {
+		return userMapper.insert(user);
 	}
 	public List<User> findUserByEmail(String email) {
 		UserExample example = new UserExample();

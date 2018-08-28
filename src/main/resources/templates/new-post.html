@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/vendor.css">
     <link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/img-figure.css">
 	
     <!-- script
     ================================================== -->
@@ -55,30 +54,101 @@
         <article class="row format-standard">
 
             <div class="s-content__header col-full">
-                <h1 id="title" class="s-content__header-title">
-                    This Is A Standard Format Post.
-                </h1>
+            	<!-- 
+            	<h1 sec:authorize="isAuthenticated()"  th:text="'id ='+${#authentication.getPrincipal().getUser().getId()}"></h1>
+            	<h1 th:if="${article}" th:text="'article.title ='+${article.title}"></h1>
+            	<th:block th:each="paragraph : ${article.paragraphs}">
+            		<h1 th:if="${paragraph.text}" th:text="${paragraph.text}"></h1>
+            	</th:block>
+            	 -->
+
+                <h1 class="s-content__header-title full-width" id="title" th:contenteditable="${article==null}" 
+                	th:text="${article!=null?(article.title?:''):''}"  th:attr="data-placeholder = ${article==null or isAuthor==true?'Enter the artitle title here':null}" ></h1>
                 <ul class="s-content__header-meta">
-                    <li class="date">December 16, 2017</li>
+                    <li class="date"></li>
 
                 </ul>
             </div> <!-- end s-content__header -->
-    
-
+				
             <div id="paragraphs" class="col-full s-content__main">
-
-                
+            <th:block th:if="${article}">
+            <th:block th:each="paragraph : ${article.paragraphs}">
+            	<div th:if="${paragraph.text}" class="paragraphDiv">
+            		<p class="newParagraph" th:utext="${paragraph.text}" style="cursor: auto;"></p>
+            		
+            	</div>
+            	<div th:if="${paragraph.image}" class="paragraphDiv">
+            		<div>
+            			<figure>
+            				<img th:src="${new String(paragraph.image)}" class="paragraphImage">
+            				<figcaption style="text-align: center;" th:if="${paragraph.imageCaption}" th:text="${paragraph.imageCaption}"></figcaption>
+            			</figure>
+            		</div>
+            	</div>
+            </th:block>
+			</th:block>
             </div> <!-- end s-content__main -->
-            <textarea id="titleTextArea" style="height: 50px;" class="full-width" placeholder="add your titles here"></textarea>
-            <button id="addTitleBtn" class="btn btn-default full-width">Add Title</button>
-            <textarea id="paragraphTextArea" rows="4" style="height: 200px;" class="full-width" placeholder="add your Paragraph here"></textarea>
-			<button id="addParagraph" class="btn btn-default full-width">Add Paragraph</button>
-			<button id="addImageBtn" class="btn btn-default full-width">Add Image</button>
+           
+    		
+            <th:block th:if="${new_post == true or isAuthor == true}">
+            	<div  th:hidden="${isAuthor}">
+    			<textarea id="paragraphTextArea" rows="4" style="height: 200px;" class="full-width" placeholder="add your Paragraph here"></textarea>
+				<button id="addParagraph" class="btn btn-default full-width">Add Paragraph</button>
+				<button id="addImageBtn" class="btn btn-default full-width">Add Image</button>
+				<button id="sortable" class="btn btn-default full-width">Enable Sortable Paragraphs</button>
+				<div class="row masonry-wrap">
+				<div class="masonry">
+
+				<div class="grid-sizer"></div>
+				
+
+					<article class="masonry__brick entry format-standard"
+						data-aos="fade-up" >
+						<div class="entry__thumb">
+							<a class="entry__thumb-link"> <img id = "masonry_image"
+								src="images/imagesPlaceholder.png"
+
+								alt="">
+								<h4 id = "masonry_image_placeholder">Click to add masonry Image</h4>
+								<i class="newCloseIcon" title= "click to delete image" onclick="javascript: resetImage()"></i>
+							</a>
+						</div>
+
+						<div class="entry__text">
+							<div class="entry__header">
+
+								<div class="entry__date">
+									<a class="date" ></a>
+								</div>
+								<h1 class="entry__title">
+									<a id = "masonry_title">This Is A Standard Format Post</a>
+								</h1>
+
+							</div>
+							<div class="entry__excerpt">
+								<p id = "masonry_excerpt" contenteditable="true" data-placeholder="insert your article excerpt here"></p>
+							</div>
+						</div>
+					
+					</article>
+				</div>
+			<!-- end masonry -->
+			</div>
+		    <!-- end masonry-wrap -->
 			<button id="post" class="btn btn--primary full-width">Post</button>
 			<input id="imageInput" type='file' accept="image/*" hidden="true" />
+			</div>
+			</th:block>
+			<div th:if="${isAuthor}">
+    		<button id="editArticle" class="btn btn-default full-width">Edit Article</button>
+    		<button id="deleteArticle" class="btn btn-default full-width">Delete Article</button>
+    		</div>
         </article>
-
+        
+ 
+		
     </section> <!-- s-content -->
+
 
 
 
@@ -195,7 +265,18 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
-	<script src="js/new-post.js"></script>
+
+    <script th:if="${new_post == true or isAuthor == true}" src="js/new-post.js"></script>
+	<script th:if="${isAuthor == true}" th:inline="javascript">
+		/*<![CDATA[*/
+
+    	var article_id = /*[[${article.id}]]*/ 5;
+
+		/*]]>*/
+	</script>
+    <script th:if="${isAuthor == true}" src="js/edit-post.js"></script>
+	<script th:if="${new_post == true or isAuthor == true}" src = "js/jquery-ui.js"></script>
+
 </body>
 
 </html>

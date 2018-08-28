@@ -2,6 +2,7 @@ package com.qiujintao.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -11,16 +12,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.qiujintao.model.User;
 import com.qiujintao.service.UserService;
 
 @Controller
+@SessionAttributes("url_prior_login")
 public class AccountController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AccountController.class);
 	@Autowired
@@ -28,7 +32,11 @@ public class AccountController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@GetMapping("/login")
-	public String login() {
+	public String login(HttpServletRequest request, ModelMap modelAndView) {
+		String referrer = request.getHeader("Referer");
+		if(referrer!=null) {
+			request.getSession().setAttribute("url_prior_login", referrer);
+		}
 		return "login";
 	}
 	@RequestMapping(value="/registration", method = RequestMethod.GET)
@@ -71,6 +79,7 @@ public class AccountController {
 			user.setPasswordHash(bCryptPasswordEncoder.encode(user.getPasswordHash()));
 			user.setRole("USER");
 			userService.saveUser(user);
+			LOGGER.info("new user no."+user.getId()+" created");
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
 		}
