@@ -1,7 +1,5 @@
 package com.qiujintao.model;
 
-import java.util.Base64;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
