@@ -20,4 +20,8 @@ $(document).ready(function() {
 			console.log("ERROR: ",e);
 		}
 	});
+<<<<<<< HEAD
 })
+=======
+}
+>>>>>>> refs/remotes/origin/master

@@ -120,7 +120,11 @@ public class Article {
 	}
 	@Override
 	public String toString() {
+<<<<<<< HEAD
 		return "[id: "+id+",title: "+title+",image: "+(image==null?null:new String(image))+", paragraphs: "+(paragraphs==null?null:paragraphs.toString())+"]";
+=======
+		return "[title: "+title+",image: "+(image==null?null:new String(image))+", paragraphs: "+(paragraphs==null?null:paragraphs.toString())+"]";
+>>>>>>> refs/remotes/origin/master
 	}
 	
 }

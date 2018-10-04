@@ -218,8 +218,12 @@ public class User {
 	 * @mbg.generated  Wed Jul 25 18:09:29 CST 2018
 	 */
 	public void setImage(byte[] image) {
+<<<<<<< HEAD
 
 		this.image = image;
 
+=======
+		this.image = image;
+>>>>>>> refs/remotes/origin/master
 	}
 }

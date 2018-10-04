@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `blog`.`paragraph` (
     FOREIGN KEY (`article_id`)
     REFERENCES `blog`.`article` (`id`)
     )
+<<<<<<< HEAD
 ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `blog`.`comment`;
@@ -87,3 +88,6 @@ CREATE TABLE `blog`.`comment` (
     REFERENCES `blog`.`article` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+=======
+ENGINE = InnoDB DEFAULT CHARSET=utf8;
+>>>>>>> refs/remotes/origin/master
