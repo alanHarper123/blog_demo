@@ -71,7 +71,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-<<<<<<< HEAD
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
@@ -134,10 +133,6 @@
 		</plugins>
 
 	</build>
-=======
-		</plugins>
-	</build>
 
->>>>>>> refs/remotes/origin/master
 
 </project>
