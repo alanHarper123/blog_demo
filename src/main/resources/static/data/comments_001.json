@@ -1,0 +1,114 @@
+{
+  "updates": [
+    {
+      "user_id": "1",
+      "username": "srinivas",
+      "name": "Srinivas Tamada",
+      "profile_pic": "https://wallscript8labs.s3.amazonaws.com/user1_14572474701.png",
+      "update_id": "62",
+      "user_update": "The Wall Script https://www.thewallscript.com",
+      "created": "1464062121",
+      "commentCount": 2,
+      "comments": [
+        {
+          "com_id": "62",
+          "uid_fk": "80",
+          "comment": "Nice",
+          "created": "1468871427",
+          "like_count": "0",
+          "uploads": "",
+          "username": "arun",
+          "name": "Arun Shekar",
+          "profile_pic": "https://wallscript8labs.s3.amazonaws.com/user10_14547044391.jpg",
+          "timeAgo": "2016-07-18T21:50:27+02:00"
+        },
+        {
+          "com_id": "72",
+          "uid_fk": "221",
+          "comment": "its a party",
+          "created": "1469053420",
+          "like_count": "0",
+          "uploads": "https://wallscript8labs.s3.amazonaws.com/comment221_1469053415.png",
+          "username": "rpg",
+          "name": "rpg",
+          "profile_pic": "https://wallscript8labs.s3.amazonaws.com/user221_14690532461.jpg",
+          "timeAgo": "2016-07-21T00:23:40+02:00"
+        }
+        ,
+        {
+          "com_id": "712",
+          "uid_fk": "221",
+          "comment": "working gres",
+          "created": "1469053426",
+          "like_count": "0",
+          "uploads": "https://wallscript8labs.s3.amazonaws.com/comment221_1469053415.png",
+          "username": "rpg",
+          "name": "rpg",
+          "profile_pic": "https://wallscript8labs.s3.amazonaws.com/user221_14690532461.jpg",
+          "timeAgo": "2016-07-21T00:23:40+02:00"
+        }
+      ]
+    },
+    {
+      "user_id": "1",
+      "username": "srinivas",
+      "name": "Srinivas Tamada",
+      "profile_pic": "https://wallscript8labs.s3.amazonaws.com/user1_14572474701.png",
+      "update_id": "60",
+      "user_update": "9lessons programming blog https://www.9lessons.info",
+      "created": "1464059798",
+         "commentCount": 2,
+      "comments": [
+        {
+          "com_id": "162",
+          "uid_fk": "80",
+          "comment": "working",
+          "created": "1468871427",
+          "like_count": "0",
+          "uploads": "",
+          "username": "eliasfarias",
+          "name": "eliasfarias",
+          "profile_pic": "https://wallscript8labs.s3.amazonaws.com/user80_14688066161.jpg",
+          "timeAgo": "2016-07-18T21:50:27+02:00"
+        }
+      ]
+    },
+    {
+      "user_id": "3",
+      "username": "arun",
+      "name": "Arun Kumar",
+      "profile_pic": "https://wallscript8labs.s3.amazonaws.com/user10_14547044391.jpg",
+      "update_id": "50",
+      "user_update": "Create Dynamic Subdomains using PHP and Htaccess https://www.9lessons.info/2016/03/how-to-create-dynamic-subdomains-using-php-and-htaccess.html",
+      "created": "1417551613",
+         "commentCount": 2,
+      "comments": [
+        {
+          "com_id": "262",
+          "uid_fk": "80",
+          "comment": "ola",
+          "created": "1468871427",
+          "like_count": "0",
+          "uploads": "",
+          "username": "eliasfarias",
+          "name": "eliasfarias",
+          "profile_pic": "https://wallscript8labs.s3.amazonaws.com/user80_14688066161.jpg",
+          "timeAgo": "2016-07-18T21:50:27+02:00"
+        },
+        {
+          "com_id": "272",
+          "uid_fk": "221",
+          "comment": "its a party",
+          "created": "1469053420",
+          "like_count": "0",
+          "uploads": "https://wallscript8labs.s3.amazonaws.com/comment221_1469053415.png",
+          "username": "rpg",
+          "name": "rpg",
+          "profile_pic": "https://wallscript8labs.s3.amazonaws.com/user221_14690532461.jpg",
+          "timeAgo": "2016-07-21T00:23:40+02:00"
+        }
+      ]
+    }
+ 
+  ]
+}

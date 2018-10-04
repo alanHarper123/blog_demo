@@ -1,0 +1,47 @@
+{
+  "name": "blog_demo",
+  "version": "0.1.0",
+  "description": "Demo of a blog",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:alanHarper123/blog_demo.git"
+  },
+  "keywords": [
+    "rest",
+    "hateoas",
+    "spring",
+    "data",
+    "react"
+  ],
+  "author": "alan",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/alanHarper123/blog_demo/issues"
+  },
+  "homepage": "https://github.com/alanHarper123/blog_demo",
+  "scripts": {
+    "fixBug": "node fixForWebpackLooping.js",
+    "watch": "webpack --watch -d",
+    "start": "webpack --config webpack.config.js"
+  },
+  "dependencies": {
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "rest": "^2.0.0",
+    "sockjs-client": "^1.1.5",
+    "stompjs": "^2.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.1",
+    "babel-loader": "^8.0.2",
+    "babel-polyfill": "^6.26.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "webpack": "^4.18.0",
+    "webpack-cli": "^3.1.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "webpack-manifest-plugin": "^2.0.4",
+    "css-loader": "^1.0.0",
+    "style-loader": "^0.23.0"
+  }
+}

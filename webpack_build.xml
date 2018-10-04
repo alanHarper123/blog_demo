@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="webpack_build">
+	<property name="node" location="${basedir}\target_react\node\node.exe" />
+    <property name="cmdline" value="${basedir}\node_modules\webpack\bin\webpack.js" />
+    <target name="autoBuild" description="to be use in conjuntion with eclipse auto build so it runs whenever specific files changes">
+        <exec dir="${basedir}" executable="${node}">
+            <arg value="${cmdline}" />
+        </exec>
+    </target>
+</project>

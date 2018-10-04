@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: blog_demo
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: alan
+Implementation-Vendor-Id: com.example
+Build-Jdk: 1.8.0_121
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/blog_demo
+Created-By: Maven Integration for Eclipse
+

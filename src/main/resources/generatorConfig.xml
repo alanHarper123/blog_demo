@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<properties resource="application.properties" />
+	<context id="context1">
+		<jdbcConnection connectionURL="${spring.datasource.url}"
+			driverClass="${spring.datasource.driver-class-name}" password="${spring.datasource.password}"
+			userId="${spring.datasource.username}" />
+		<javaModelGenerator
+			targetPackage="com.qiujintao.model"
+			targetProject="blog_demo/src/main/java" />
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="blog_demo/src/main/resources" />
+		<javaClientGenerator
+			targetPackage="com.qiujintao.mapper"
+			targetProject="blog_demo/src/main/java" type="XMLMAPPER" />
+			
+		<!-- 
+		<table tableName="user">
+			<property name="useActualColumnNames" value="true"/>
+			<generatedKey column="id" sqlStatement="JDBC"/>
+		</table>
+		
+		 <table tableName="article">
+			<property name="useActualColumnNames" value="true"/>
+			<generatedKey column="id" sqlStatement="JDBC"/>
+			<columnOverride column="creation_date" isGeneratedAlways="true"/>
+			<columnOverride column="last_update" isGeneratedAlways="true"/>
+		</table>
+		 -->
+		 <!-- 
+		<table tableName="paragraph">
+			<property name="useActualColumnNames" value="true"/>
+			<generatedKey column="id" sqlStatement="JDBC"/>
+		</table>
+		-->
+		<table tableName="comment">
+			<property name="useActualColumnNames" value="true"/>
+			<generatedKey column="id" sqlStatement="JDBC"/>
+			<columnOverride column="creation_date" isGeneratedAlways="true"/>
+		</table>
+	</context>
+</generatorConfiguration>

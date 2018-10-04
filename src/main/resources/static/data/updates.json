@@ -1,0 +1,14 @@
+{
+  "updates": [
+    {
+      "user_id": "7",
+      "username": "rajesh",
+      "name": "Rajesh Tamada",
+      "profile_pic": "pic.png",
+      "update_id": "1470950004",
+      "user_update": "User update value",
+      "created": "1470950004",
+      "comments": []
+    }
+  ]
+}
