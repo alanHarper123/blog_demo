@@ -5,15 +5,10 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-<<<<<<< HEAD
 import com.qiujintao.BlogDemoApplication;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=BlogDemoApplication.class)
-=======
-@RunWith(SpringRunner.class)
-@SpringBootTest
->>>>>>> refs/remotes/origin/master
 public class BlogDemoApplicationTests {
 
 	@Test

@@ -54,15 +54,13 @@ public class HomeController {
 		modelAndView.setViewName("single-audio");
 		return modelAndView;
 	}
-<<<<<<< HEAD
 	@GetMapping("/react-index")
 	public ModelAndView react_index() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("react-index");
 		return modelAndView;
 	}
-=======
->>>>>>> refs/remotes/origin/master
+
 	@GetMapping(value="/view-post",params="id")
 	public ModelAndView view_post(@RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView();

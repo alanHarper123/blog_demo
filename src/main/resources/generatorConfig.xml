@@ -20,7 +20,7 @@
 			<property name="useActualColumnNames" value="true"/>
 			<generatedKey column="id" sqlStatement="JDBC"/>
 		</table>
-<<<<<<< HEAD
+
 		
 		 <table tableName="article">
 			<property name="useActualColumnNames" value="true"/>
@@ -40,21 +40,5 @@
 			<generatedKey column="id" sqlStatement="JDBC"/>
 			<columnOverride column="creation_date" isGeneratedAlways="true"/>
 		</table>
-=======
-		-->
-		 <table tableName="article">
-			<property name="useActualColumnNames" value="true"/>
-			<generatedKey column="id" sqlStatement="JDBC"/>
-			<columnOverride column="creation_date" isGeneratedAlways="true"/>
-			<columnOverride column="last_update" isGeneratedAlways="true"/>
-		</table>
-		 
-		 <!-- 
-		<table tableName="paragraph">
-			<property name="useActualColumnNames" value="true"/>
-			<generatedKey column="id" sqlStatement="JDBC"/>
-		</table>
-		-->
->>>>>>> refs/remotes/origin/master
 	</context>
 </generatorConfiguration>
