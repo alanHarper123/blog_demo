@@ -53,7 +53,7 @@ class CommentList extends React.Component{
                     return(
                         <li className="depth-1 comment" key = {comment.id}>
                             <div className="comment__avatar">
-                                <img width="50" height="50" className="avatar" src={comment.user.image==null?"images/avatars/user-03.jpg":atob(comment.user.image)} alt="" />
+                                <img width="50" height="50" className="avatar" src={comment.user.image==null?"images/avatars/user-03.jpg":comment.user.image} alt="" />
                             </div>
 
                             <div className="comment__content">

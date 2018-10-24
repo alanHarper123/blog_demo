@@ -2,20 +2,20 @@ package com.qiujintao.configuration;
 
 import javax.sql.DataSource;
 
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.annotation.MapperScan;
+import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.qiujintao.handler.RefererRedirectionAuthenticationSuccessHandler;
@@ -30,21 +30,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	
 	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	@Autowired
 	private MyUserDetailsService MyUserDetailsService; 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(MyUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
+		auth.userDetailsService(MyUserDetailsService).passwordEncoder(passwordEncoder());
 	}
+	@Value("${server.http.port}")
+	private int httpPort;
+	@Value("${server.port}")
+	private int httpsPort;
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 //		.csrf()
 //		.disable()
-		.authorizeRequests()
+		.requiresChannel().anyRequest().requiresSecure()
+		.and()
+        .portMapper()               
+        .http(httpPort).mapsTo(httpsPort)
+		.and()
+		.authorizeRequests().antMatchers("/new-post").authenticated()
 //		.antMatchers("/admin/").hasAuthority("ADMIN")
 		.antMatchers("/**").permitAll()
+//		.and().requiresChannel().antMatchers("/login").requiresInsecure()
 		.and()
 		.formLogin().loginPage("/login")
 		.usernameParameter("email")
@@ -56,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.and()
 		.exceptionHandling()
 		.accessDeniedPage("/access-denied");
+		
 	}
 	
 //	@Override
@@ -64,5 +73,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //	       .ignoring()
 //	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
 //	}
+
 
 }

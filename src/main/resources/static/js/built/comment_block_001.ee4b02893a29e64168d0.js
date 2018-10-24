@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/main/resources/static/js/react/like_button.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/main/resources/static/js/react/comment_block_001.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -21078,10 +21078,10 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./src/main/resources/static/js/react/like_button.js":
-/*!***********************************************************!*\
-  !*** ./src/main/resources/static/js/react/like_button.js ***!
-  \***********************************************************/
+/***/ "./src/main/resources/static/js/react/comment_block_001.js":
+/*!*****************************************************************!*\
+  !*** ./src/main/resources/static/js/react/comment_block_001.js ***!
+  \*****************************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -21113,57 +21113,131 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 "use strict";
 
-var e = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+function ajaxPostReact(url, dataPost, success) {
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: JSON.stringify(dataPost),
+    dataType: "json",
+    contentType: "application/json",
+    cache: false,
+    timeout: 20000,
+    success: success,
+    error: function error(e) {
+      alert("Error!");
+      console.log("ERROR: ", e);
+    }
+  });
+}
 
-var LikeButton =
+var CommentsContainer =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(LikeButton, _React$Component);
+  _inherits(CommentsContainer, _React$Component);
 
-  function LikeButton(props) {
+  function CommentsContainer(props) {
     var _this;
 
-    _classCallCheck(this, LikeButton);
+    _classCallCheck(this, CommentsContainer);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(LikeButton).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CommentsContainer).call(this, props));
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function (e, xhr, options) {
+      xhr.setRequestHeader(header, token);
+    });
     _this.state = {
-      liked: false
+      comments: []
     };
     return _this;
   }
 
-  _createClass(LikeButton, [{
+  _createClass(CommentsContainer, [{
     key: "render",
     value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "comments",
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-full"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "h2"
+      }, "5 Comments"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CommentList, {
+        comments: this.state.comments
+      })));
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _this2 = this;
 
-      if (this.state.liked) {
-        return 'You liked comment number ' + this.props.commentID;
-      }
+      ajaxPostReact("/api/comments", {
+        "article_id": article_id
+      }, function (data) {
+        _this2.setState({
+          comments: data
+        });
 
-      return e('button', {
-        onClick: function onClick() {
-          return _this2.setState({
-            liked: true
-          });
-        }
-      }, 'Like');
+        console.log(data);
+      });
     }
   }]);
 
-  return LikeButton;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // Find all DOM containers, and render Like buttons into them.
+  return CommentsContainer;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
+var CommentList =
+/*#__PURE__*/
+function (_React$Component2) {
+  _inherits(CommentList, _React$Component2);
 
-document.querySelectorAll('.like_button_container').forEach(function (domContainer) {
-  // Read the comment ID from a data-* attribute.
-  var commentID = parseInt(domContainer.dataset.commentid, 10);
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(e(LikeButton, {
-    commentID: commentID
-  }), domContainer);
-});
+  function CommentList() {
+    _classCallCheck(this, CommentList);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(CommentList).apply(this, arguments));
+  }
+
+  _createClass(CommentList, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
+        className: "commentlist"
+      }, this.props.comments.map(function (comment) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "depth-1 comment",
+          key: comment.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment__avatar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          width: "50",
+          height: "50",
+          className: "avatar",
+          src: comment.user.image == null ? "images/avatars/user-03.jpg" : comment.user.image,
+          alt: ""
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment__content"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment__info"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("cite", null, comment.user.nickName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment__meta"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
+          className: "comment__time"
+        }, comment.creation_date), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "reply",
+          href: "#0"
+        }, "Reply"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment__text"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.context))));
+      }));
+    }
+  }]);
+
+  return CommentList;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CommentsContainer, null), document.getElementById('commentsContainer'));
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=like_button.c39772f6571a3435ef80.js.map
+//# sourceMappingURL=comment_block_001.ee4b02893a29e64168d0.js.map

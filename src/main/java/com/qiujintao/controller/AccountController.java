@@ -24,7 +24,6 @@ import com.qiujintao.model.User;
 import com.qiujintao.service.UserService;
 
 @Controller
-@SessionAttributes("url_prior_login")
 public class AccountController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AccountController.class);
 	@Autowired
@@ -33,10 +32,10 @@ public class AccountController {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@GetMapping("/login")
 	public String login(HttpServletRequest request, ModelMap modelAndView) {
-		String referrer = request.getHeader("Referer");
-		if(referrer!=null) {
-			request.getSession().setAttribute("url_prior_login", referrer);
-		}
+//		String referrer = request.getHeader("Referer");
+//		if(referrer!=null) {
+//			request.getSession().setAttribute("url_prior_login", referrer);
+//		}
 		return "login";
 	}
 	@RequestMapping(value="/registration", method = RequestMethod.GET)

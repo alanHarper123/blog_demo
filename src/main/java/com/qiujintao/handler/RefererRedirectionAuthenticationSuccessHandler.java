@@ -17,18 +17,19 @@ public class RefererRedirectionAuthenticationSuccessHandler extends SavedRequest
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String redirectUrl = null;
-		if(session != null) {
-			redirectUrl = (String) session.getAttribute("url_prior_login");
-		}
-		if (redirectUrl != null) {
-			// we do not forget to clean this attribute from session
-			session.removeAttribute("url_prior_login");
-			// then we redirect
-			getRedirectStrategy().sendRedirect(request, response, redirectUrl);
-		} else {
-			super.onAuthenticationSuccess(request, response, authentication);
-		}
+//		HttpSession session = request.getSession();
+//		String redirectUrl = null;
+//		if(session != null) {
+//			redirectUrl = (String) session.getAttribute("url_prior_login");
+//		}
+//		if (redirectUrl != null) {
+//			// we do not forget to clean this attribute from session
+//			session.removeAttribute("url_prior_login");
+//			// then we redirect
+//			getRedirectStrategy().sendRedirect(request, response, redirectUrl);
+//		} else {
+//			super.onAuthenticationSuccess(request, response, authentication);
+//		}
+		super.onAuthenticationSuccess(request, response, authentication);
 	}
 }

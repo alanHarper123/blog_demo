@@ -1,6 +1,6 @@
 package com.qiujintao.controller;
 
-
+import com.zaxxer.hikari.HikariDataSource;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -35,6 +36,7 @@ import com.qiujintao.util.File_utils;
 
 @RestController
 public class PostController {
+	
 	@Autowired
 	private CommentService commentService;
 	@Autowired
@@ -42,7 +44,6 @@ public class PostController {
 	@PostMapping("/new-post/api/article/save")
 	public String postArticle(@Valid @RequestBody Article article) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		
 		if(!(authentication instanceof AnonymousAuthenticationToken)) {
 			
 			try {

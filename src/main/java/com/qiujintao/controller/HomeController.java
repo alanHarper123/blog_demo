@@ -81,19 +81,21 @@ public class HomeController {
 	}
 
 	@GetMapping("/new-post")
-	public ModelAndView new_post(HttpServletRequest request, ModelMap model,RedirectAttributes ra) {
+	public ModelAndView new_post(HttpServletRequest request, ModelMap model) {
 		
 		ModelAndView modelAndView = new ModelAndView();
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication instanceof AnonymousAuthenticationToken) {
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//		if(authentication instanceof AnonymousAuthenticationToken) {
+////			request.getSession().setAttribute("url_prior_login", makeUrl(request));
+////			ra.addFlashAttribute("url_prior_login", makeUrl(request));
 //			request.getSession().setAttribute("url_prior_login", makeUrl(request));
-			ra.addFlashAttribute("url_prior_login", makeUrl(request));
-
-			return new ModelAndView("redirect:/login", model);
-		}else {
-			modelAndView.setViewName("new-post");
-			modelAndView.addObject("new_post", true);
-		}
+//			return new ModelAndView("redirect:/login", model);
+//		}else {
+//			modelAndView.setViewName("new-post");
+//			modelAndView.addObject("new_post", true);
+//		}
+		modelAndView.setViewName("new-post");
+		modelAndView.addObject("new_post", true);
 		return modelAndView;
 	}
 	
