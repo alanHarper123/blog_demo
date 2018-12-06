@@ -13,7 +13,11 @@
     <!-- mobile specific metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+    
+    <!-- fonts for material-UI
+    ================================================== -->
+    <link th:if="${new_post != true}" rel="stylesheet" href="fonts/robotFont.css">
+	<link th:if="${new_post != true}" rel="stylesheet" href="fonts/materialIcon.css">
     <!-- CSS
     ================================================== -->
     <link rel="stylesheet" href="css/base.css">
@@ -81,6 +85,7 @@
             	<div th:if="${paragraph.image}" class="paragraphDiv">
             		<div>
             			<figure>
+            				<!-- h1 th:text="${@environment.getProperty('server.port')}"></h1>  -->
             				<img th:src="${new String(paragraph.image)}" class="paragraphImage">
             				<figcaption style="text-align: center;" th:if="${paragraph.imageCaption}" th:text="${paragraph.imageCaption}"></figcaption>
             			</figure>

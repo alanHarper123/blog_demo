@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TomcatConfig {
+	
+	// start a http server
 	@Bean
 	public ServletWebServerFactory servletContainer(@Value("${server.http.port}") int httpPort) {
 	    Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);

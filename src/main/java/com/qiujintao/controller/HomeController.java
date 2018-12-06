@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -63,6 +64,7 @@ public class HomeController {
 
 	@GetMapping(value="/view-post",params="id")
 	public ModelAndView view_post(@RequestParam int id) {
+
 		ModelAndView modelAndView = new ModelAndView();
 		Article article = articleService.findArticleDetailsById(id);
 		if (article==null) {
